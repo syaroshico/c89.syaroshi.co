@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <style>
 h1 {
   font-size: 36px;
@@ -41,7 +42,7 @@ h1 {
 </div>
 <div id="table">
 <div id="t-head">
-<p>name</p><p>circle</p><p>day</p><p>location</p><p>r18</p><p>genre</p><p>price</p>
+<p>名前</p><p>サークル</p><p>日程</p><p>場所</p><p>R-18</p><p>ジャンル</p><p>値段(円)</p><p>URL</p>
 </div>
 </div>
 
@@ -67,10 +68,10 @@ xhr.onload = function() {
   var json = JSON.parse(this.responseText);
   for (var i = 0; i < json.length; ++i) {
     var data = json[i];
-    var row = "<p>{name}</p><p>{circle}</p><p>{day}</p><p>{location}</p><p>{r18}</p><p>{genre}</p><p>{price}</p>";
+    var row = "<p>{name}</p><p>{circle}</p><p>{day}</p><p>{location}</p><p>{r18}</p><p>{genre}</p><p>{price}</p><p><a href=”{url}” target=”_blank”>{url}</a></p>";
     var div = document.createElement("div");
     div.style.display = "table-row"
-    div.innerHTML = format(row, {name: data.name, circle: data.circle, day: data.day, location: data.location, r18: data.r18, genre: data.genre, price: data.price});
+    div.innerHTML = format(row, {name: data.name, circle: data.circle, day: data.day, location: data.location, r18: data.r18, genre: data.genre, price: data.price, url: data.url});
     document.getElementById("table").appendChild(div);
   };
 };
