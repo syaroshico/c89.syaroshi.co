@@ -1,16 +1,33 @@
 <!DOCTYPE html>
+<html lang="ja">
 <head>
 <meta charset="utf-8">
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
 <style>
-.alt-table-responsive {
-    width: 100%;
-    overflow-y: hidden;
-    overflow-x: auto;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-    -webkit-overflow-scrolling: touch;
+h1 {
+  font-size: 36px;
+  font-weight: 500;
+}
+#table {
+  display: table;
+  border-top: solid 1px #DDD;
+  border-right: solid 1px #DDD;
+  font-size: 14px;
+}
+#t-head {
+  display: table-row;
+}
+#table p {
+  display: table-cell;
+  border-left: solid 1px #DDD;
+  border-bottom: solid 1px #DDD;
+  vertical-align: middle;
+  padding: 8px;
+}
+
+#table #t-head p {
+  text-align: center;
+  border-bottom: solid 2px #DDD;
+  font-weight: bold;
 }
 </style>
 <title>コミックマーケット89シャロシコ本情報</title>
@@ -20,32 +37,45 @@
 <h1 style="text-align:center;">コミックマーケット89シャロシコ本情報</h1>
 <div style="margin:10px;text-align:center;">
 <a href="https://twitter.com/share" class="twitter-share-button"{count} data-via="sudosan" data-size="large" data-hashtags="C89">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='//platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 </div>
-<div class="alt-table-responsive">
-<div id="columns"></div>
+<div id="table">
+<div id="t-head">
+<p>name</p><p>circle</p><p>day</p><p>location</p><p>r18</p><p>genre</p><p>price</p>
 </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="jquery.columns.min.js"></script>
+
+</div>
+</div>
+</div>
 <script>
-$(document).ready(function() {
-  $.getJSON('./data.json',function (data) {
-    var json = data.data;
-    $('#columns').columns({
-      data:json,
-      size:50,
-      search:false,
-      paginating:false,
-      sorting:false,
-      showRows:[50]
-    });
-    $(".ui-table-footer").remove();
-    $("th").removeClass(".ui-table-sortable");
-    $(".ui-table").addClass("table table-bordered");
-  });
-});
+function format(fmt, a) {
+    var rep_fn = undefined;
+    if (typeof a == "object") {
+        rep_fn = function(m, k) { return a[ k ]; }
+    } else {
+        var args = arguments;
+        rep_fn = function(m, k) { return args[ parseInt(k)+1 ]; }
+    }
+    return fmt.replace( /\{(\w+)\}/g, rep_fn);
+}
+var xhr = new XMLHttpRequest();
+xhr.onload = function() {
+  if (this.status !== 200 || !this.response) {
+    return false;
+  }
+  var json = JSON.parse(this.responseText);
+  for (var i = 0; i < json.length; ++i) {
+    var data = json[i];
+    var row = "<p>{name}</p><p>{circle}</p><p>{day}</p><p>{location}</p><p>{r18}</p><p>{genre}</p><p>{price}</p>";
+    var div = document.createElement("div");
+    div.style.display = "table-row"
+    div.innerHTML = format(row, {name: data.name, circle: data.circle, day: data.day, location: data.location, r18: data.r18, genre: data.genre, price: data.price});
+    document.getElementById("table").appendChild(div);
+  };
+};
+xhr.open("GET", "data.json", true);
+xhr.send(null);
 </script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </body>
+</html>
