@@ -159,6 +159,16 @@
 "genre" : [ "イラスト集","セット" ],
 "price" : 2000,
 "url" : "http://www.pixiv.net/member_illust.php?mode=medium&illust_id=54292537"
+},
+{
+"name" : "めちゃシコシャロちゃん",
+"circle" : "47sp",
+"day" : 3,
+"location" : "M-33b",
+"r18" : true,
+"genre" : [ "千夜" ],
+"price" : 500,
+"url" : "http://www.pixiv.net/member_illust.php?mode=medium&illust_id=54301422"
 }
 
 ]
