@@ -30,153 +30,9 @@
 <script src="jquery.columns.min.js"></script>
 <script>
 $(document).ready(function() {
-    var json = [
-{
-name : "friends-friend-friends",
-circle : "あとりえひなた",
-day : 3,
-location : "ネ-08b",
-r18 : true,
-genre : [ "百合","千夜" ],
-price : 500
-},
-{
-name : "シャロちゃんに射炉したい☆",
-circle : "恋☆天使同盟",
-day : 3,
-location : "ハ-55b",
-r18 : true,
-genre : [ "ノーマル","援交" ],
-price : 400
-},
-{
-name : "ご注文はどの娘ですか？",
-circle : "ＩｍｉｔａｔｉｏｎＭｏｏｎ",
-day : 3,
-location : "ハ-53a",
-r18 : true,
-genre : [ "ノーマル","援交" ],
-price : 500
-},
-{
-name : "調教済みシャロちゃんの話",
-circle : "ＩｍｉｔａｔｉｏｎＭｏｏｎ",
-day : 3,
-location : "ハ-53a",
-r18 : true,
-genre : [ "ノーマル","調教" ],
-price : 200
-},
-{
-name : "とろ娘8",
-circle : "わんとんランド組合",
-day : 3,
-location : "パ-15b",
-r18 : true,
-genre : [ "ノーマル" ],
-price : 500
-},
-{
-name : "シャロちゃん抱き枕カバー",
-circle : "PeachCandy",
-day : 3,
-location : "A-31a",
-r18 : true,
-genre : [ "抱き枕カバー" ],
-price : 11000
-},
-{
-name : "ご注文はご奉仕ですか？",
-circle : "PeachCandy",
-day : 3,
-location : "A-31a",
-r18 : true,
-genre : [ "ノーマル" ],
-price : 500
-},
-{
-name : "Vol.3",
-circle : "fluffy×fluffy",
-day : 3,
-location : "c-29b",
-r18 : false,
-genre : [ "フルカラー" ,"チノ" ],
-price : 700
-},
-{
-name : "シャロちゃんと脱法ハーブティーパーティですか?",
-circle : "最果て空間",
-day : 3,
-location : "ハ-54b",
-r18 : true,
-genre : [ "援交" ],
-price : 500
-},
-{
-name : "えっちなうさみみをご希望ですか?",
-circle : "モレリークス",
-day : 3,
-location : "ネ-13a",
-r18 : true,
-genre : [ "援交" ],
-price : 500
-},
-{
-name : "シャロの冬休み",
-circle : "Legato",
-day : 1,
-location : "A-87a",
-r18 : false,
-genre : [ "日常" ],
-price : 500
-},
-{
-name : "KCKWGS",
-circle : "0000",
-day : 3,
-location : "ハ-60b",
-r18 : false,
-genre : [ "千夜","イラスト集" ],
-price : 500
-},
-{
-name : "イチャイチャスーパーハーレム学園",
-circle : "オロリヤ鉛筆堂",
-day : 3,
-location : "ハ-30b",
-r18 : true,
-genre : [ "多作品カップリング" ],
-price : 500
-},
-{
-name : "ちっちゃいカラダ",
-circle : "AQUA:VER",
-day : 3,
-location : "ハ-55a",
-r18 : true,
-genre : [ "ノーマル" ],
-price : 300
-},
-{
-name : "一人思うは雨の中",
-circle : "箱庭の日常図",
-day : 1,
-location : "カ-60b",
-r18 : false,
-genre : [ "千夜" ],
-price : 400
-},
-{
-name : "refrain",
-circle : "DOGYEAR",
-day : 3,
-location : "ネ-08a",
-r18 : true,
-genre : [ "イラスト集" ],
-price : 2000
-}
-];
-$('#columns').columns({
+  $.getJSON('./data.json',function (data) {
+    var json = data.data;
+    $('#columns').columns({
       data:json,
       size:50,
       search:false,
@@ -184,11 +40,12 @@ $('#columns').columns({
       sorting:false,
       showRows:[50]
     });
-$(".ui-table-footer").remove();
-$("th").removeClass(".ui-table-sortable");
-$(".ui-table").addClass("table table-bordered");
+    $(".ui-table-footer").remove();
+    $("th").removeClass(".ui-table-sortable");
+    $(".ui-table").addClass("table table-bordered");
   });
+});
 </script>
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </body>
